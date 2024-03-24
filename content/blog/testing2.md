@@ -5,4 +5,10 @@ tags= ["shit posting"]
 draft = false
 +++
 
-f
+
+```c
+int main void(){
+    puts("MOPS CAN FUCK OFF");
+}
+
+```

@@ -1,23 +1,41 @@
 :root {
     --base1: #586e75;
+    --base2: #073642;
+    --base3: #002b36;
     --magenta: #d33682;
     --blue: #268bd2;
     --cyan: #2aa198;
     --green: #859900;
     --violet: #6c71c4;
+    --background: #212121;
 }
 
 body {
-    background-color: #212121;
+    background-color: var(--base3);
     font-family: "Fira Sans", sans-serif;
-    font-size: 2.5em;
+    font-size: 2em;
     color: white;
+    margin-right: 200px;
 }
 
+
+.flex-nav-bar {
+    margin: 100px;
+    height: 100%;
+    /* @TODO: Why da fuck this break everything? */
+    /* position: fixed; */
+}
+
+#blurb {
+    display: block;
+    /* position: fixed; */
+}
 
 /* For the Navagation Bar */
 #nav {
     display: block;
+    /* position: fixed; */
+
 }
 
 #nav>ul {
@@ -53,13 +71,10 @@ body {
     width: 40%;
 }
 
-.flex-nav-bar {
-    margin: 50px;
-}
 
 .container {
     display: grid;
-    grid-template-columns: 2fr 5fr 1fr;
+    grid-template-columns: 2fr 4fr 1fr;
 }
 
 .container * {
@@ -108,11 +123,16 @@ body {
 }
 
 footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 2.5rem;
+    /* position: absolute; */
+    /* bottom: 0; */
+    /* width: 100%; */
+    /* height: 2.5rem; */
+    min-height: 70%;
+    min-height: -webkit-calc(100% - 186px);
+    min-height: -moz-calc(100% - 186px);
+    min-height: calc(100% - 186px);
+
 }
 
-
-
+.flex-center {
+}
