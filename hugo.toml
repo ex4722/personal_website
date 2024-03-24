@@ -21,7 +21,7 @@ title = "Eddie's Personal Website"
   [[menu.main]]
     name = "About"
     pre = "about"
-    url = "about.html"
+    url = "about"
     weight = 4
 
 [taxonomies]
