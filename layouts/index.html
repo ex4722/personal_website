@@ -6,7 +6,7 @@
 <div class="image-grid">
     {{ range .Site.Menus.main }}
     <div class="image-container">
-        <a class="nav-link" href="{{ .URL }}">
+        <a class="nav-link" href="{{ .URL | relURL }}">
             <img src="{{ $image_path }}" class="grid-image">
             <div class="centered">{{ .Name }}</div>
         </a>

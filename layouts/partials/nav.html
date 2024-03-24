@@ -3,9 +3,9 @@
     {{ partial "me.html" . }}
     <nav id="nav">
         {{ range .Site.Menus.main }}
-            <ul>
-                <li><a class="nav-link" href="{{ .URL }}">{{ .Name }}</a></li>
-            </ul>
+        <ul>
+            <li><a class="nav-link" href="{{ .URL | relURL }}">{{ .Name }}</a></li>
+        </ul>
         {{ end }}
     </nav>
 </div>
