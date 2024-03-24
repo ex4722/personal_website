@@ -6,3 +6,9 @@ Landing Page-> Point to other pages
     Projects Page
     Blog's Overview Page
 	Blog's Template
+
+
+Adding a non blog page
+https://digitaldrummerj.me/hugo-add-additional-pages/
+Add the template to content/about.md
+Add the html shit to layouts/pages/about.html then we BIG CHILLING

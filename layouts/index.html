@@ -1,4 +1,17 @@
 {{ define "main" }}
-    <h1 class="violet-text">Welcome to Eddie's World</h1>
-    <p>Lorem ipsum dolor sit amet consectetur. Scelerisque lobortis ultrices augue feugiat lacus pulvinar magna habitant.</p>
+{{ $image_path := "images/programming1.jpg" | relURL }}
+<h1 class="violet-text">Welcome to Eddie's World</h1>
+<p>Lorem ipsum dolor sit amet consectetur. Scelerisque lobortis ultrices augue feugiat lacus pulvinar magna habitant.
+</p>
+<div class="image-grid">
+    {{ range .Site.Menus.main }}
+    <div class="image-container">
+        <a class="nav-link" href="{{ .URL }}">
+            <img src="{{ $image_path }}" class="grid-image">
+            <div class="centered">{{ .Name }}</div>
+        </a>
+    </div>
+    {{ end}}
+
+</div>
 {{ end }}
