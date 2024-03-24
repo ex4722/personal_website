@@ -11,7 +11,7 @@
 }
 
 body {
-    background-color: var(--base3);
+    background-color: var(--background);
     font-family: "Fira Sans", sans-serif;
     font-size: 2em;
     color: white;
@@ -135,4 +135,16 @@ footer {
 }
 
 .flex-center {
+}
+
+/* linenos=true or linenos=table */
+.highlight > div  {
+  border-radius: 20px;
+  padding: 0 1em;
+}
+
+/* linenos=false or linenos=inline */
+.highlight > pre  {
+  border-radius: 20px;
+  padding: 1em;
 }
