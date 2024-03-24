@@ -10,7 +10,7 @@
 body {
     background-color: #212121;
     font-family: "Fira Sans", sans-serif;
-    font-size: .8em;
+    font-size: 2.5em;
     color: white;
 }
 
@@ -54,7 +54,7 @@ body {
 }
 
 .flex-nav-bar {
-    margin: 20px;
+    margin: 50px;
 }
 
 .container {

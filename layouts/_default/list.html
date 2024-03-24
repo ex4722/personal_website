@@ -1,10 +1,19 @@
 {{ define "main" }}
-    <h1>{{ .Title }}></h1>
+{{ $image_path := "images/programming1.jpg" | relURL }}
+<h1>{{ .Title }}></h1>
+
+<div class="image-grid">
     {{ range .Pages.ByPublishDate }}
-        <p>
-            <a class="" href="{{ .RelPermalink }}">{{ .Title }}</a>
-            <br>
-            {{ partial "date-and-tags.html" . }}
-        </p>
+
+    <div class="image-container">
+        <a class="nav-link" href="{{ .RelPermalink }}">
+            <img src="{{ $image_path }}" class="grid-image">
+            <div class="centered">{{ .Title }}</div>
+        </a>
+    </div>
+
+    <!-- @TODO: Shove a date in here somehow -->
+    <!-- {{ partial "date-and-tags.html" . }} -->
     {{ end }}
+</div>
 {{ end }}
