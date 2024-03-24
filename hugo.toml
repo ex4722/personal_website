@@ -1,0 +1,31 @@
+baseURL = 'https://example.org/'
+languageCode = 'en-us'
+title = "Eddie's Personal Website"
+
+[menu]
+  [[menu.main]]
+    name = "Home"
+    pre = "home"
+    url = "/"
+    weight = 1
+  [[menu.main]]
+    name = "Blog"
+    pre = "edit"
+    url = "/blog/"
+    weight = 2
+  [[menu.main]]
+    name = "Tags"
+    pre = "tag"
+    url = "/tags/"
+    weight = 3
+  [[menu.main]]
+    name = "About"
+    pre = "about"
+    url = "about.html"
+    weight = 4
+
+[taxonomies]
+  tag = "tags"
+
+[params]
+  dateFormat = "Jan 2, 2006"

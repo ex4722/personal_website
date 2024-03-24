@@ -1,0 +1,10 @@
+{{ define "main" }}
+    <h1>{{ .Title }}></h1>
+    {{ range .Pages.ByPublishDate }}
+        <p>
+            <a class="" href="{{ .RelPermalink }}">{{ .Title }}</a>
+            <br>
+            {{ partial "date-and-tags.html" . }}
+        </p>
+    {{ end }}
+{{ end }}

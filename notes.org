@@ -1,0 +1,8 @@
+* Personal Website
+
+Landing Page-> Point to other pages
+
+    About Page
+    Projects Page
+    Blog's Overview Page
+	Blog's Template

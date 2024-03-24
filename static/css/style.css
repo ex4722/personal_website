@@ -1,0 +1,115 @@
+:root {
+    --base1: #586e75;
+    --magenta: #d33682;
+    --blue: #268bd2;
+    --cyan: #2aa198;
+    --green: #859900;
+    --violet: #6c71c4;
+}
+
+body {
+    background-color: #212121;
+    font-family: "Fira Sans", sans-serif;
+    font-size: .8em;
+    color: white;
+}
+
+
+/* For the Navagation Bar */
+#nav {
+    display: block;
+}
+
+#nav>ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 60px;
+}
+
+#nav>ul>li>a {
+    display: block;
+    width: 100px;
+    color: var(--blue);
+    text-decoration: none;
+}
+
+#nav>ul>li>a:hover {}
+
+/* @TODO: Add some JS that sets active class to wtv page we r on */
+#nav>ul>li>a:active {
+    background-color: #04AA6D;
+    color: white;
+}
+
+#nav>ul>li a:hover:not(.active) {
+    /* @TODO: Make this shit look nice, how to make highlight nice */
+    background-color: #555;
+    color: var(--violet);
+}
+
+#pfp {
+    border-radius: 50%;
+    width: 40%;
+}
+
+.flex-nav-bar {
+    margin: 20px;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 2fr 5fr 1fr;
+}
+
+.container * {
+    /* border: 1px solid white; */
+}
+
+/* Solarized Color Scheme!! */
+.magenta-text {
+    color: #d33682;
+}
+
+.blue-text {
+    color: #268bd2;
+}
+
+.violet-text {
+    color: #6c71c4;
+}
+
+.cyan-text {
+    color: #2aa198;
+}
+
+.green-text {
+    color: #859900;
+}
+
+.red-text {
+    color: #dc322f;
+}
+
+.orange-text {
+    color: #cb4b16;
+}
+
+.yellow-text {
+    color: #b58900;
+}
+
+.base0-text {
+    color: #839496;
+}
+
+.base1-text {
+    color: #586e75;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 2.5rem;
+}

@@ -1,0 +1,11 @@
+<!-- This shit is the blurb AND the nav bar, I suck at naming things -->
+<div id="nav-border" class="flex-nav-bar">
+    {{ partial "me.html" . }}
+    <nav id="nav">
+        {{ range .Site.Menus.main }}
+            <ul>
+                <li><a class="nav-link" href="{{ .URL }}">{{ .Name }}</a></li>
+            </ul>
+        {{ end }}
+    </nav>
+</div>
