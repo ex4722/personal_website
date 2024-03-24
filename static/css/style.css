@@ -71,10 +71,15 @@ body {
     width: 40%;
 }
 
+#main * {
+      max-width: 100%; /* Set a maximum width for the container */
+  word-wrap: break-word; /* Allow long words to break and wrap */
+
+}
 
 .container {
     display: grid;
-    grid-template-columns: 2fr 4fr 1fr;
+    grid-template-columns: 1fr 2fr .3fr;
 }
 
 .container * {
@@ -134,17 +139,16 @@ footer {
 
 }
 
-.flex-center {
-}
+.flex-center {}
 
 /* linenos=true or linenos=table */
-.highlight > div  {
-  border-radius: 20px;
-  padding: 0 1em;
+.highlight>div {
+    border-radius: 20px;
+    padding: 0 1em;
 }
 
 /* linenos=false or linenos=inline */
-.highlight > pre  {
-  border-radius: 20px;
-  padding: 1em;
+.highlight>pre {
+    border-radius: 20px;
+    padding: 1em;
 }
