@@ -29,3 +29,8 @@ title = "Eddie's Personal Website"
 
 [params]
   dateFormat = "Jan 2, 2006"
+
+[markup.highlight]
+  codeFences = true
+  noClasses = false
+  style = "static/css/syntax/css"
