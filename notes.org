@@ -12,3 +12,38 @@ Adding a non blog page
 https://digitaldrummerj.me/hugo-add-additional-pages/
 Add the template to content/about.md
 Add the html shit to layouts/pages/about.html then we BIG CHILLING
+
+https://x3ero0.tech/
+Image-grid stuff
+
+Use FLEX
+    word-wrap: break-word;
+    overflow: auto;
+    flex 0 0 auto
+remove footer
+text overflow
+make code scrollable
+
+nav-border 
+    style="
+        flex: 0 0 auto;
+        width: 8em;
+
+.flex-nav-bar {
+    margin: 30px;
+    height: 100%;
+    /* position: fixed; */
+}
+
+
+hihglight
+white high no background
+fully extend 
+
+
+tooltip implemnt
+- use JS
+- use CSS pseduo elements 
+
+scale image grid + tie zoom to css hover
+pointer events none on parent 

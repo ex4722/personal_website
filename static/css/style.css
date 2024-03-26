@@ -13,17 +13,22 @@
 body {
     background-color: var(--background);
     font-family: "Fira Sans", sans-serif;
-    font-size: 2em;
+    font-size: 1.5em;
     color: white;
-    margin-right: 200px;
 }
 
+.full-col {
+            /* width: 100%; */
+            /* height:100%; */
+}
 
 .flex-nav-bar {
-    margin: 100px;
-    height: 100%;
+    /* margin: 100px; */
+    padding: 5% 0% 0% 3%;
+
+    /* height: 100%; */
     /* @TODO: Why da fuck this break everything? */
-    /* position: fixed; */
+    position: fixed;
 }
 
 #blurb {
@@ -79,11 +84,8 @@ body {
 
 .container {
     display: grid;
-    grid-template-columns: 1fr 2fr .3fr;
-}
-
-.container * {
-    /* border: 1px solid white; */
+    grid-template-columns: 1fr 3fr .8fr;
+    gap: 44px;
 }
 
 /* Solarized Color Scheme!! */
@@ -139,7 +141,10 @@ footer {
 
 }
 
-.flex-center {}
+.flex-center {
+    overflow: hidden;
+    padding: 5% 0% 0% 0%;
+}
 
 /* linenos=true or linenos=table */
 .highlight>div {
@@ -147,6 +152,9 @@ footer {
     padding: 0 1em;
 }
 
+.chroma {
+    overflow-x: scroll;
+}
 /* linenos=false or linenos=inline */
 .highlight>pre {
     border-radius: 20px;
