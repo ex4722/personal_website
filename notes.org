@@ -47,3 +47,9 @@ tooltip implemnt
 
 scale image grid + tie zoom to css hover
 pointer events none on parent 
+
+on hover for blogs display a tl;dr about the exploit
+
+
+
+Get OKD to web hook my git repo on push to update my site

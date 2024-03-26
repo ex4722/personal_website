@@ -13,10 +13,15 @@ title = "Eddie's Personal Website"
     pre = "edit"
     url = "/blog/"
     weight = 2
+  # [[menu.main]]
+  #   name = "Tags"
+  #   pre = "tag"
+  #   url = "/tags/"
+  #   weight = 3
   [[menu.main]]
-    name = "Tags"
-    pre = "tag"
-    url = "/tags/"
+    name = "Projects"
+    pre = "projects"
+    url = "projects"
     weight = 3
   [[menu.main]]
     name = "About"
