@@ -21,12 +21,12 @@ title = "Eddie's Personal Website"
   [[menu.main]]
     name = "Projects"
     pre = "projects"
-    url = "projects"
+    url = "/projects/"
     weight = 3
   [[menu.main]]
     name = "About"
     pre = "about"
-    url = "about"
+    url = "/about/"
     weight = 4
 
 [taxonomies]
