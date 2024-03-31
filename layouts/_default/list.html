@@ -1,14 +1,14 @@
 {{ define "main" }}
-{{ $image_path := "images/programming1.jpg" | relURL }}
 <h1>{{ .Title }}></h1>
 
 <div class="image-grid">
     {{ range .Pages.ByPublishDate }}
+    {{ $image_path := printf "images/%s.png" .Title | relURL }}
 
     <div class="image-container">
         <a class="nav-link" href="{{ .RelPermalink }}">
             <img src="{{ $image_path }}" class="grid-image">
-            <div class="centered">{{ .Title }}</div>
+            <div class="centered">{{ replaceRE "_" " " .Title }}</div>
         </a>
     </div>
 

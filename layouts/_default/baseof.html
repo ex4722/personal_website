@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {{ $css_style := "css/style.css" | relURL }}
+{{ $js := "js/fuck_mobile.js" | relURL }}
 {{ $css_image_grid := "css/image-grid.css" | relURL }}
 {{ $css_syntax := "css/syntax.css" | relURL }}
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,6 +15,7 @@
         <link href="{{ $css_style }}" rel="stylesheet">
         <link href="{{ $css_image_grid }}" rel="stylesheet">
         <link href="{{ $css_syntax }}" rel="stylesheet">
+        <script src="{{ $js }}" defer></script>
 
     </head>
     <body>
@@ -27,3 +29,4 @@
         </div>
     </body>
 </html>
+
