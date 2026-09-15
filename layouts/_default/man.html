@@ -1,0 +1,63 @@
+{{ define "main" }}
+{{- $name := .Params.manName | default (upper site.Title) -}}
+{{- $sect := .Params.manSection | default "1" -}}
+{{- $label := printf "%s(%s)" (upper $name) $sect -}}
+<div class="page-man">
+  <main id="main" class="man-page">
+    <div class="man-bar">
+      <span>{{ $label }}</span>
+      <span>User Commands</span>
+      <span>{{ $label }}</span>
+    </div>
+    <div class="man-body">
+      <h2 class="man-heading">NAME</h2>
+      {{ if .Params.manNameLine }}
+      <p class="man-indent">{{ .Params.manNameLine }}</p>
+      {{ else }}
+      <p class="man-indent">{{ lower $name }}{{ with .Params.manDesc }} &mdash; {{ . }}{{ end }}</p>
+      {{ end }}
+
+      {{ with .Params.synopsis }}
+      <h2 class="man-heading">SYNOPSIS</h2>
+      <pre class="man-indent man-pre"><code>{{ . }}</code></pre>
+      {{ end }}
+
+      {{ if .Content }}
+      <h2 class="man-heading">DESCRIPTION</h2>
+      <div class="man-indent man-prose">{{ .Content }}</div>
+      {{ end }}
+
+      {{ range .Params.sections }}
+      <h2 class="man-heading">{{ .heading }}</h2>
+      {{ if .links }}
+      <p class="man-indent man-links">
+        {{ range $i, $l := .links }}{{ if $i }}, {{ end }}<a href="{{ $l.url }}"{{ if hasPrefix $l.url "http" }} target="_blank" rel="noopener"{{ end }}>{{ $l.label }}</a>{{ end }}
+      </p>
+      {{ else if .items }}
+      <dl class="man-opts">
+        {{ range .items }}
+        <dt>{{ .term }}</dt>
+        <dd>{{ .desc }}</dd>
+        {{ end }}
+      </dl>
+      {{ else if strings.Contains .text "\n" }}
+      <pre class="man-indent man-pre">{{ .text }}</pre>
+      {{ else }}
+      <div class="man-indent man-inline">{{ .text | markdownify }}</div>
+      {{ end }}
+      {{ end }}
+    </div>
+    <div class="man-bar">
+      <span>{{ $label }}</span>
+      <span>{{ .Date.Format "2006-01-02" }}</span>
+      <span>{{ $label }}</span>
+    </div>
+  </main>
+  {{ partial "statusline.html" (dict
+    "mode" "SHELL"
+    "modeStyle" "--mode: var(--mode-shell)"
+    "file" (printf "man %s" (lower $name))
+    "cells" (slice (dict "text" (printf "%s(2)" (upper $name)) "chrome" true "auto" true))
+  ) }}
+</div>
+{{ end }}

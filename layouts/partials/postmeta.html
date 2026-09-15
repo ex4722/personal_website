@@ -1,0 +1,11 @@
+{{- $page := . -}}
+{{- $catSlug := $page.Params.category -}}
+{{- $cat := index hugo.Data.categories $catSlug -}}
+{{- $words := countwords $page.Content -}}
+{{- $mins := math.Ceil (div (float $words) 200) -}}
+<div class="post-meta">
+  <span class="cat">{{ with $cat }}{{ .label | upper }}{{ else }}{{ $catSlug | upper }}{{ end }}</span>
+  &middot; {{ $page.Date.Format "2006-01-02" }}
+  &middot; {{ $mins }} MIN
+  {{- with $page.Params.env }} &middot; {{ . | upper }}{{ end }}
+</div>

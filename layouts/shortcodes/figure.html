@@ -1,0 +1,47 @@
+{{- $mode := .Get "mode" | default "inline" -}}
+{{- $src := .Get "src" -}}
+{{- $alt := .Get "alt" | default "" -}}
+{{- $caption := .Get "caption" -}}
+{{- $page := .Page -}}
+{{- $resolve := printf "img/posts/%s/%s" $page.File.ContentBaseName $src -}}
+{{- $img := $page.Resources.GetMatch $src -}}
+{{- if not $img }}{{ $img = resources.Get $resolve }}{{ end -}}
+
+{{- if eq $mode "twoup" -}}
+  {{- $src2 := .Get "src2" -}}
+  {{- $label2 := .Get "label2" | default $src2 -}}
+  {{- $img2 := $page.Resources.GetMatch $src2 -}}
+  {{- if not $img2 }}{{ $img2 = resources.Get (printf "img/posts/%s/%s" $page.File.ContentBaseName $src2) }}{{ end -}}
+  <figure class="fig">
+    <div class="fig-twoup">
+      <div class="half">
+        <div class="half-bar">{{ $src }}</div>
+        {{ with $img }}<img src="{{ .RelPermalink }}" alt="{{ $alt }}" loading="lazy" decoding="async" width="{{ .Width }}" height="{{ .Height }}" data-lightbox-src="{{ .RelPermalink }}" tabindex="0" role="button" aria-label="zoom image">{{ end }}
+      </div>
+      <div class="half">
+        <div class="half-bar">{{ $label2 }}</div>
+        {{ with $img2 }}<img src="{{ .RelPermalink }}" alt="{{ $alt }}" loading="lazy" decoding="async" width="{{ .Width }}" height="{{ .Height }}" data-lightbox-src="{{ .RelPermalink }}" tabindex="0" role="button" aria-label="zoom image">{{ end }}
+      </div>
+    </div>
+    {{ with $caption }}<figcaption class="fig-cap"><span class="quote" aria-hidden="true">&quot;</span> {{ . }}</figcaption>{{ end }}
+  </figure>
+
+{{- else if eq $mode "bleed" -}}
+  <figure class="fig">
+    <div class="fig-bleed">
+      {{ with $img }}<img src="{{ .RelPermalink }}" alt="{{ $alt }}" loading="lazy" decoding="async" width="{{ .Width }}" height="{{ .Height }}" data-lightbox-src="{{ .RelPermalink }}" tabindex="0" role="button" aria-label="zoom image">{{ end }}
+    </div>
+    {{ with $caption }}<figcaption class="fig-cap"><span class="quote" aria-hidden="true">&quot;</span> {{ . }}</figcaption>{{ end }}
+  </figure>
+
+{{- else -}}
+  <figure class="fig">
+    <div class="fig-frame">
+      <div class="fig-bar">
+        <span class="marker" aria-hidden="true">&#9656;</span><span class="name">{{ $src }}</span><span class="hint">&lt;CR&gt; zoom</span>
+      </div>
+      {{ with $img }}<img src="{{ .RelPermalink }}" alt="{{ $alt }}" loading="lazy" decoding="async" width="{{ .Width }}" height="{{ .Height }}" data-lightbox-src="{{ .RelPermalink }}" tabindex="0" role="button" aria-label="zoom image">{{ end }}
+    </div>
+    {{ with $caption }}<figcaption class="fig-cap"><span class="quote" aria-hidden="true">&quot;</span> {{ . }}</figcaption>{{ end }}
+  </figure>
+{{- end -}}

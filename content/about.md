@@ -1,14 +1,40 @@
 ---
 title: "About"
-Description: "Making the Complex Simple and Easy to Understand!"
-layout: "about"
+date: 2026-09-03
+layout: "man"
+manName: "Eddie"
+manSection: "1"
+manNameLine: "eddie"
+synopsis: |
+  eddie [--pwn] [--metal] [--skate] [--run] [--neovim] target
+sections:
+  - heading: "OPTIONS"
+    items:
+      - term: "-p, --pwn"
+        desc: "Pwn main forever"
+      - term: "-m, --metal"
+        desc: "Metalcore and deathcore enjoyer. Avid mosher"
+      - term: "-s, --skate"
+        desc: "Wanna be skater, just ask the doctors about accidents"
+      - term: "-r, --run"
+        desc: "type 2 fun"
+      - term: "-n --neovim"
+        desc: "Cult of vim"
+  - heading: "FOCUS"
+    text: ""
+  - heading: "TEAM"
+    text: "idek | friendly maltese citizens | superdicecodelovers"
+  - heading: "TODO"
+    text: |
+      study abroad                             [status: In Progress]
+      thru-hike the Appalachian Trail          [status: May 2028]
+      short-term ordination, Thai monastery    [status: November 2028]
+  - heading: "SEE ALSO"
+    links:
+      - label: "github(1)"
+        url: "https://github.com/ex4722"
 ---
 
-**Eddie Xiao**
+A boutique vulnerability researcher and CTF player at heart. 
 
-Hello World! I'm Eddie Xiao. 
-
-I'm a hacker interested VR/RE shit. I'm experienced with memory corruption, heap exploitation, kernel exploitation and much more. I'm interested in fuzzing, automation, ML security and tool development. 
-I love linux RICEing and I'm a die hard Neovim fanatic.
-
-I'm from NYC and I am currently a freshman studying Computer Science at RIT. In my spare time you will find me skateboarding, rock climbing or blasting death metal.
+Interests include mobile devices, weird machines, networking equipment

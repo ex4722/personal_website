@@ -1,0 +1,19 @@
+{{ define "main" }}
+<div class="buf page-page" data-palette-open="false">
+  <div class="buf-body">
+    {{ partial "gutter.html" (dict "count" 20) }}
+    <main id="main" class="content">
+      <div class="page-label" style="color: var(--mode-error)">E486</div>
+      <h1 class="page-h1">Pattern not found</h1>
+      <p class="prose"><span style="color:var(--fg-dim)">E486:</span> pattern not found: <code style="color: var(--link)">{{ .Permalink }}</code></p>
+      <p class="prose"><a href="{{ "/" | relURL }}">:e index.md</a> — go home</p>
+    </main>
+  </div>
+  {{ partial "statusline.html" (dict
+    "mode" "E486"
+    "modeStyle" "--mode: var(--mode-error)"
+    "file" "404.md"
+    "cells" (slice (dict "text" "1:1" "chrome" true "auto" true))
+  ) }}
+</div>
+{{ end }}

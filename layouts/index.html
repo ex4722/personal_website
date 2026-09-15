@@ -1,16 +1,29 @@
 {{ define "main" }}
-{{ $image_path := "images/programming1.jpg" | relURL }}
-<h1 class="violet-text">Welcome to Eddie's World</h1>
-<p>Lorem ipsum dolor sit amet consectetur. Scelerisque lobortis ultrices augue feugiat lacus pulvinar magna habitant.
-</p>
-<div class="image-grid">
-    {{ range .Site.Menus.main }}
-    <div class="image-container">
-        <a class="nav-link" href="{{ .URL | relURL }}">
-            <img src="{{ $image_path }}" class="grid-image">
-            <div class="centered">{{ .Name }}</div>
-        </a>
+{{- $posts := where site.RegularPages "Section" "posts" -}}
+{{- $cheats := where site.RegularPages "Section" "cheatsheets" -}}
+{{- $all := (union $posts $cheats).ByDate.Reverse -}}
+<div class="page-terminal">
+  <main id="main" class="term-page">
+    <div class="term-line"><span class="prompt-arrow" aria-hidden="true">&#10148;</span> <span class="prompt-dir">~</span> <span class="prompt-cmd">whoami</span></div>
+    <div class="term-out term-name">{{ site.Title }}</div>
+    <div class="term-out term-tagline">{{ site.Params.tagline }}</div>
+
+    <div class="term-line"><span class="prompt-arrow" aria-hidden="true">&#10148;</span> <span class="prompt-dir">~</span> <span class="prompt-cmd">ls -lt posts/</span></div>
+    <div class="term-ls">
+      {{ partial "postlist.html" $all }}
     </div>
-    {{ end}}
+    <div class="term-out term-dim">{{ len $all }} files</div>
+
+    <div class="term-line"><span class="prompt-arrow" aria-hidden="true">&#10148;</span> <span class="prompt-dir">~</span> <span class="prompt-cmd">cat menu.txt</span></div>
+    <div class="term-out term-menu">
+      <a href="{{ "/about/" | relURL }}">:about</a>
+      <a href="{{ "/cheatsheets/" | relURL }}">:cheat</a>
+      <a href="{{ "/feed.xml" | relURL }}">:rss</a>
+    </div>
+  </main>
+  {{ partial "statusline.html" (dict
+    "mode" "SHELL"
+    "modeStyle" "--mode: var(--mode-shell)"
+  ) }}
 </div>
 {{ end }}

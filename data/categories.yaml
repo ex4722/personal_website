@@ -1,0 +1,20 @@
+pwn:
+  label: "pwn"
+  long: "Exploitation"
+  color: "#b58900"
+vr:
+  label: "vr"
+  long: "Vulnerability research"
+  color: "#d33682"
+cheat:
+  label: "cheat"
+  long: "Cheatsheet"
+  color: "#2aa198"
+phil:
+  label: "phil"
+  long: "Philosophy"
+  color: "#6c71c4"
+rev:
+  label: "rev"
+  long: "Reversing"
+  color: "#268bd2"

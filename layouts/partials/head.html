@@ -1,0 +1,26 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ if .IsHome }}{{ .Site.Title }} — {{ .Site.Params.tagline }}{{ else }}{{ .Title }} · {{ .Site.Title }}{{ end }}</title>
+<meta name="description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.tagline }}{{ end }}">
+{{ hugo.Generator }}
+<link rel="canonical" href="{{ .Permalink }}">
+<link rel="alternate" type="application/rss+xml" href="{{ "/feed.xml" | absURL }}" title="{{ .Site.Title }}">
+
+<link rel="preload" href="{{ "/fonts/jbmono-variable.woff2" | absURL }}" as="font" type="font/woff2" crossorigin>
+
+{{ $style := resources.Get "scss/main.scss" | css.Sass (dict "targetPath" "css/main.css" "outputStyle" "compressed") | fingerprint }}
+<link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}">
+
+<script>
+(function () {
+  var t = localStorage.getItem("theme");
+  if (!t) {
+    t = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+  }
+  document.documentElement.setAttribute("data-theme", t);
+  document.documentElement.classList.remove("no-js");
+  document.documentElement.classList.add("js");
+})();
+</script>
+
+{{ if .Site.Params.pgp }}<link rel="pgp-key" href="{{ .Site.Params.pgp }}">{{ end }}

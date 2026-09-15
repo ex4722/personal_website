@@ -1,0 +1,17 @@
+{{- $page := . -}}
+{{- $items := $page.Params.attachments -}}
+{{- if $items }}
+<div class="attachments">
+  <div class="attachments-head">:copen — {{ len $items }} attachment{{ if ne (len $items) 1 }}s{{ end }}</div>
+  <div class="attachments-strip">
+    {{ range $items }}
+    {{- $img := $page.Resources.GetMatch .src -}}
+    {{- if not $img }}{{ $img = resources.Get (printf "img/posts/%s/%s" $page.File.ContentBaseName .src) }}{{ end -}}
+    <div class="attachments-item">
+      {{ $alt := .alt }}{{ with $img }}<img src="{{ .RelPermalink }}" alt="{{ $alt }}" loading="lazy" decoding="async" data-lightbox-src="{{ .RelPermalink }}" tabindex="0" role="button" aria-label="zoom image">{{ end }}
+      <div class="name">{{ .caption | default .src }}</div>
+    </div>
+    {{ end }}
+  </div>
+</div>
+{{- end -}}

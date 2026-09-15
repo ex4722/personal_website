@@ -1,0 +1,37 @@
+{{ define "main" }}
+{{- $catSlug := .Params.category -}}
+{{- $cat := index hugo.Data.categories $catSlug -}}
+{{- $catColor := "" -}}
+{{- with $cat }}{{ $catColor = .color }}{{ end -}}
+{{- $words := countwords .Content -}}
+{{- $totalLines := math.Max 1 (div $words 8) -}}
+<div class="buf page-post" style="--cat-color: {{ $catColor }}">
+  <div class="progress-bar"><div class="progress-bar-fill" id="progress-fill" style="background: {{ $catColor }}"></div></div>
+  <div class="buf-body">
+    {{ if .Params.toc }}{{ partial "toc.html" . }}{{ end }}
+    <main id="main" class="content">
+      {{ partial "postmeta.html" . }}
+      <h1 class="post-h1">{{ .Title }}</h1>
+      {{ with .Params.subtitle }}<div class="post-subtitle">{{ . }}</div>{{ end }}
+      {{ with .Params.tldr }}
+      <div class="tldr" style="--cat-color: {{ $catColor }}">
+        <span class="tldr-label">TL;DR</span>
+        <span class="tldr-text">{{ . }}</span>
+      </div>
+      {{ end }}
+      <div class="prose post-body">{{ .Content }}</div>
+      {{ partial "attachments.html" . }}
+    </main>
+  </div>
+  {{ partial "statusline.html" (dict
+    "mode" "NORMAL"
+    "modeStyle" (printf "--mode: %s" $catColor)
+    "file" (printf "posts/%d/%s.md" .Date.Year .File.ContentBaseName)
+    "fileHref" ("/posts/" | relURL)
+    "cells" (slice
+      (dict "text" (printf "ln 1/%.0f" $totalLines) "id" "status-ln" "auto" true)
+      (dict "text" "0%" "id" "status-pct" "chrome" true)
+    )
+  ) }}
+</div>
+{{ end }}

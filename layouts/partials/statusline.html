@@ -1,0 +1,23 @@
+{{- $mode := .mode -}}
+{{- $modeStyle := .modeStyle -}}
+{{- $file := .file -}}
+{{- $fileHref := .fileHref -}}
+{{- $hints := .hints -}}
+{{- $cells := .cells -}}
+{{- $modeHref := .modeHref | default "/" -}}
+<div class="statusline"{{ with $modeStyle }} style="{{ . | safeCSS }}"{{ end }}>
+  <a class="mode" href="{{ $modeHref | relURL }}">{{ $mode }}</a>
+  {{ if $file }}
+    {{ if $fileHref }}
+    <a class="file" href="{{ $fileHref }}">{{ $file }}</a>
+    {{ else }}
+    <span class="file">{{ $file }}</span>
+    {{ end }}
+  {{ end }}
+  {{ if $cells }}
+    {{ range $cells }}<span class="cell{{ if .chrome }} cell--chrome{{ end }}{{ if .auto }} cell--auto{{ end }}"{{ with .id }} id="{{ . }}"{{ end }}>{{ .text }}</span>{{ end }}
+  {{ end }}
+  {{ if $hints }}
+    <span class="hints">{{ $hints | safeHTML }}</span>
+  {{ end }}
+</div>

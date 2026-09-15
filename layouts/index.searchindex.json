@@ -1,0 +1,14 @@
+{{- $posts := where site.RegularPages "Section" "posts" -}}
+{{- $cheats := where site.RegularPages "Section" "cheatsheets" -}}
+{{- $all := (union $posts $cheats).ByDate.Reverse -}}
+[
+{{- range $i, $p := $all }}{{ if $i }},{{ end }}
+  {
+    "title": {{ $p.Title | jsonify }},
+    "url": {{ $p.RelPermalink | jsonify }},
+    "category": {{ $p.Params.category | jsonify }},
+    "date": {{ ($p.Date.Format "2006-01-02") | jsonify }},
+    "excerpt": {{ ($p.Content | plainify | truncate 160) | jsonify }}
+  }
+{{- end }}
+]

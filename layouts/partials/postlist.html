@@ -1,0 +1,17 @@
+{{- $pages := . -}}
+<ul class="post-list">
+  {{ range $pages }}
+  {{- $catSlug := .Params.category -}}
+  {{- $cat := index hugo.Data.categories $catSlug -}}
+  {{- $words := countwords .Content -}}
+  {{- $mins := math.Ceil (div (float $words) 200) -}}
+  <li class="post-list-row" data-cat="{{ $catSlug }}">
+    <a href="{{ .RelPermalink }}" style="--cat-color: {{ with $cat }}{{ .color }}{{ end }}">
+      <span class="post-list-date">{{ .Date.Format "2006-01-02" }}</span>
+      <span class="post-list-cat">{{ with $cat }}{{ .label }}{{ else }}{{ $catSlug }}{{ end }}</span>
+      <span class="post-list-meta"><span class="post-list-meta-cat">{{ with $cat }}{{ .label | upper }}{{ else }}{{ $catSlug | upper }}{{ end }}</span> &middot; {{ .Date.Format "2006-01-02" }} &middot; {{ $mins }} MIN</span>
+      <span class="post-list-title">{{ .Title }}</span>
+    </a>
+  </li>
+  {{ end }}
+</ul>

@@ -1,0 +1,39 @@
+{{ define "main" }}
+{{- $pages := .Pages.ByDate.Reverse -}}
+<div class="buf page-page">
+  <div class="buf-body">
+    {{ partial "gutter.html" (dict "count" 40) }}
+    <main id="main" class="content">
+      <div class="netrw">
+        <pre class="netrw-banner">" ============================================================================
+" Netrw Directory Listing                                        ({{ len $pages }} files)
+"   {{ .RelPermalink }}
+"   Sorted by      date
+"   Sort sequence: [\/]$,\&lt;core\%(\.\d\+\)\=\&gt;,\.h$,\.c$,\.cpp$,\~\=\*$
+"   Quick Help: &lt;F1&gt;:help  -:go up dir  D:delete  R:rename  s:sort-by  x:special
+" ============================================================================</pre>
+        <div class="netrw-list">
+          <a class="netrw-entry netrw-dir" href="{{ "/" | relURL }}">../</a>
+          {{ range $pages }}
+          {{- $catSlug := .Params.category -}}
+          {{- $cat := index hugo.Data.categories $catSlug -}}
+          <a class="netrw-entry" href="{{ .RelPermalink }}">
+            <span class="netrw-name">{{ .File.ContentBaseName }}.md</span>
+            <span class="netrw-meta">
+              <span class="netrw-date">{{ .Date.Format "02 Jan 2006" }}</span>
+              <span class="netrw-cat" style="color: {{ with $cat }}{{ .color }}{{ end }}">{{ with $cat }}{{ .label }}{{ else }}{{ $catSlug }}{{ end }}</span>
+            </span>
+          </a>
+          {{ end }}
+        </div>
+      </div>
+    </main>
+  </div>
+  {{ partial "statusline.html" (dict
+    "mode" "NORMAL"
+    "modeStyle" "--mode: var(--mode-page)"
+    "file" "posts/"
+    "cells" (slice (dict "text" (printf "%d posts" (len $pages)) "chrome" true "auto" true))
+  ) }}
+</div>
+{{ end }}

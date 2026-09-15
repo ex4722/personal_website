@@ -1,32 +1,32 @@
 <!DOCTYPE html>
-{{ $css_style := "css/style.css" | relURL }}
-{{ $js := "js/fuck_mobile.js" | relURL }}
-{{ $css_image_grid := "css/image-grid.css" | relURL }}
-{{ $css_syntax := "css/syntax.css" | relURL }}
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{{ .Title }}</title>
-        <link href="{{ $css_style }}" rel="stylesheet">
-        <link href="{{ $css_image_grid }}" rel="stylesheet">
-        <link href="{{ $css_syntax }}" rel="stylesheet">
-        <script src="{{ $js }}" defer></script>
-
-    </head>
-    <body>
-        <div class="container">
-            {{ partial "nav.html" . }}
-            <div class="full-col"></div>
-            <main id="main" class="flex-center">
-                {{ block "main" . }}{{ end }}
-                {{ partial "footer.html" . }}
-            </main>
-        </div>
-    </body>
+<html lang="en" class="no-js" data-theme="dark">
+<head>
+{{ partial "head.html" . }}
+</head>
+<body>
+{{ block "main" . }}{{ end }}
+{{ partial "palette.html" . }}
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <div class="lightbox-body">
+    <img id="lightbox-img" src="" alt="">
+    <div class="lightbox-cap" id="lightbox-cap"></div>
+  </div>
+  <div class="statusline">
+    <span class="mode" style="--mode: var(--mode-zoom)">ZOOM</span>
+    <span class="file">h/l next &middot; q close</span>
+    <span class="cell cell--auto cell--chrome" id="lightbox-count">1/1</span>
+  </div>
+</div>
+{{ $theme := resources.Get "js/theme.js" }}
+{{ $palette := resources.Get "js/palette.js" }}
+{{ $lightbox := resources.Get "js/lightbox.js" }}
+{{ $chrome := resources.Get "js/chrome.js" }}
+{{ $bundle := slice $theme $palette $lightbox $chrome | resources.Concat "js/bundle.js" }}
+{{ if hugo.IsProduction }}
+  {{ $bundle = $bundle | js.Build (dict "minify" true) | fingerprint }}
+  <script src="{{ $bundle.RelPermalink }}" integrity="{{ $bundle.Data.Integrity }}" defer></script>
+{{ else }}
+  <script src="{{ $bundle.RelPermalink }}" defer></script>
+{{ end }}
+</body>
 </html>
-

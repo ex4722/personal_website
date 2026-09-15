@@ -1,0 +1,24 @@
+{{ define "main" }}
+{{- $catColor := (index hugo.Data.categories "cheat").color -}}
+<div class="buf page-post" style="--cat-color: {{ $catColor }}">
+  <div class="buf-body">
+    <main id="main" class="content">
+      <div class="post-meta"><span class="cat">CHEAT</span> &middot; {{ .Date.Format "2006-01-02" }}</div>
+      <h1 class="post-h1">{{ .Title }}</h1>
+      {{ if .Content }}<div class="prose post-body">{{ .Content }}</div>{{ end }}
+      {{ with .Params.entries }}
+      <dl class="cheat-grid">
+        {{ range . }}<dt>{{ .key }}</dt><dd>{{ .value }}</dd>{{ end }}
+      </dl>
+      {{ end }}
+    </main>
+  </div>
+  {{ partial "statusline.html" (dict
+    "mode" "CHEAT"
+    "modeStyle" (printf "--mode: %s" $catColor)
+    "file" (printf "cheatsheets/%s.md" .File.ContentBaseName)
+    "fileHref" ("/cheatsheets/" | relURL)
+    "cells" (slice (dict "text" "1:1" "chrome" true "auto" true))
+  ) }}
+</div>
+{{ end }}

@@ -1,0 +1,7 @@
+{{- $count := .count | default 60 -}}
+{{- $hl := .highlight | default 4 -}}
+<nav class="gutter" aria-hidden="true">
+  {{- range $n := (seq 1 $count) }}
+  <div{{ if eq $n $hl }} class="hl"{{ end }}>{{ $n }}</div>
+  {{- end }}
+</nav>

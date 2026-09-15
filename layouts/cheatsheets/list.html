@@ -1,0 +1,25 @@
+{{ define "main" }}
+{{- $tools := slice -}}
+{{- range .Pages }}{{ $tools = $tools | append (.Params.tool | default "misc") }}{{ end -}}
+{{- $tools = $tools | uniq | sort -}}
+<div class="buf page-page" data-palette-open="false">
+  <div class="buf-body">
+    {{ partial "gutter.html" (dict "count" 40) }}
+    <main id="main" class="content">
+      <div class="page-label">CHEATSHEETS</div>
+      <h1 class="page-h1">Index</h1>
+      {{ range $tools }}
+      {{- $tool := . -}}
+      <h2 style="font-size:13px;color:var(--fg-dim);letter-spacing:.06em;margin:24px 0 10px;text-transform:uppercase">{{ $tool }}</h2>
+      {{ partial "postlist.html" (where $.Pages "Params.tool" $tool) }}
+      {{ end }}
+    </main>
+  </div>
+  {{ partial "statusline.html" (dict
+    "mode" "CHEAT"
+    "modeStyle" "--mode: var(--cat-cheat)"
+    "file" "cheatsheets/"
+    "cells" (slice (dict "text" (printf "%d sheets" (len .Pages)) "chrome" true "auto" true))
+  ) }}
+</div>
+{{ end }}

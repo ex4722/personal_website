@@ -1,0 +1,23 @@
+{{ define "main" }}
+<div class="buf page-page" data-palette-open="false">
+  <div class="buf-body">
+    {{ partial "gutter.html" (dict "count" 30) }}
+    <main id="main" class="content">
+      {{ with .Params.label }}<div class="page-label">{{ . }}</div>{{ end }}
+      <h1 class="page-h1">{{ .Title }}</h1>
+      <div class="prose">{{ .Content }}</div>
+      {{ with .Params.kv }}
+      <dl class="kv-grid">
+        {{ range . }}<dt>{{ .key }}</dt><dd>{{ .value | safeHTML }}</dd>{{ end }}
+      </dl>
+      {{ end }}
+    </main>
+  </div>
+  {{ partial "statusline.html" (dict
+    "mode" "NORMAL"
+    "modeStyle" "--mode: var(--mode-page)"
+    "file" (printf "%s.md" .File.ContentBaseName)
+    "cells" (slice (dict "text" "14:1" "chrome" true "auto" true))
+  ) }}
+</div>
+{{ end }}

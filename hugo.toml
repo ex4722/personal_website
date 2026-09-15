@@ -1,41 +1,52 @@
-baseURL = 'https://example.org/'
-languageCode = 'en-us'
-title = "Eddie's Personal Website"
+baseURL = "https://eddiexiao.com"
+locale = "en-US"
+title = "eddie xiao"
+enableRobotsTXT = true
+disableKinds = ["taxonomy", "term"]
 
-[menu]
-  [[menu.main]]
-    name = "Home"
-    pre = "home"
-    url = "/"
-    weight = 1
-  [[menu.main]]
-    name = "Blog"
-    pre = "edit"
-    url = "/blog/"
-    weight = 2
-  # [[menu.main]]
-  #   name = "Tags"
-  #   pre = "tag"
-  #   url = "/tags/"
-  #   weight = 3
-  [[menu.main]]
-    name = "Projects"
-    pre = "projects"
-    url = "/projects/"
-    weight = 3
-  [[menu.main]]
-    name = "About"
-    pre = "about"
-    url = "/about/"
-    weight = 4
-
-[taxonomies]
-  tag = "tags"
-
+# category slug -> hex, mirrored in data/categories.yaml (used for build-time include)
 [params]
-  dateFormat = "Jan 2, 2006"
+  tagline = "vulnerability research · ctf · embedded network stacks"
+  handle = "@segfault"
+  github = "https://github.com/example"
+  matrix = "https://matrix.to/#/@segfault:matrix.org"
+  pgp = "/pgp.txt"
+  rssDescription = "Vulnerability research, CTF write-ups, and cheatsheets."
 
-[markup.highlight]
-  codeFences = true
-  noClasses = false
-  style = "static/css/syntax/css"
+[permalinks]
+  posts = "/posts/:year/:slug/"
+  cheatsheets = "/cheatsheets/:slug/"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+    [markup.goldmark.extensions]
+      [markup.goldmark.extensions.typographer]
+        disable = true
+  [markup.highlight]
+    style = "solarized-dark"
+    lineNos = false
+    noClasses = false
+    codeFences = true
+    guessSyntax = true
+
+[outputs]
+  home = ["HTML", "RSS", "SEARCHINDEX"]
+
+[outputFormats.RSS]
+  mediaType = "application/rss+xml"
+  baseName = "feed"
+
+[outputFormats.SEARCHINDEX]
+  mediaType = "application/json"
+  baseName = "search"
+  isPlainText = true
+  notAlternative = true
+
+[caches]
+  [caches.images]
+    dir = ":resourceDir/_gen"
+
+[minify]
+  disableXML = true

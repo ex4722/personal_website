@@ -1,0 +1,31 @@
+---
+title: "pwntools quickref"
+date: 2022-09-01
+category: cheat
+tool: "pwntools"
+entries:
+  - key: "p = process('./chal')"
+    value: "spawn the local binary"
+  - key: "r = remote(host, port)"
+    value: "connect to a remote service"
+  - key: "p.recvuntil(b'...')"
+    value: "read until a delimiter"
+  - key: "p.sendline(payload)"
+    value: "send bytes + newline"
+  - key: "p.interactive()"
+    value: "drop to an interactive shell"
+  - key: "ELF('./chal')"
+    value: "parse symbols, GOT, PLT, BSS"
+  - key: "context.binary = elf"
+    value: "infer arch/os for packing helpers"
+  - key: "p32 / p64 / u32 / u64"
+    value: "pack and unpack integers"
+  - key: "cyclic(200)"
+    value: "de Bruijn pattern for offset-finding"
+  - key: "cyclic_find(0x61616161)"
+    value: "recover the offset from a crash value"
+  - key: "ROP(elf)"
+    value: "build a ROP chain from an ELF's gadgets"
+  - key: "DynELF(leak, elf=elf)"
+    value: "resolve libc symbols via a leak oracle"
+---

@@ -1,0 +1,25 @@
+<div class="palette-backdrop" data-palette-backdrop></div>
+<div class="palette" id="cmd-palette" role="dialog" aria-modal="true" aria-label="Command palette">
+  <div class="palette-handle-row"><span class="palette-handle"></span></div>
+  <div class="palette-input-row">
+    <span class="colon" aria-hidden="true">:</span>
+    <input class="palette-input" id="palette-input" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Command">
+  </div>
+  <div class="palette-results" role="listbox" aria-label="Commands" id="palette-results">
+    {{ range hugo.Data.commands }}
+    <a class="palette-row" role="option" data-cmd="{{ .cmd }}" data-desc="{{ .desc }}"
+       {{ if .url }}href="{{ .url | relURL }}"{{ else }}href="#" data-action="{{ .action }}"{{ end }}
+       style="color: {{ .color }}">
+      <span class="cmd" style="width:76px;flex:none">{{ .cmd }}</span><span class="desc">{{ .desc }}</span>
+    </a>
+    {{ end }}
+  </div>
+</div>
+
+<nav class="palette-fallback" aria-label="Site">
+  <ul>
+    {{ range hugo.Data.commands }}
+    <li><a href="{{ if .url }}{{ .url | relURL }}{{ else }}#{{ end }}">{{ .cmd }}</a> — {{ .desc }}</li>
+    {{ end }}
+  </ul>
+</nav>
